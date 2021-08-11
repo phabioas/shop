@@ -1,6 +1,6 @@
 import 'package:shop/models/product.dart';
 
-class ProductProvider {
+class ProductDummy {
   final List<Product> _listProduct = [
     Product(
       id: 'p1',
