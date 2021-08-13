@@ -5,10 +5,14 @@ import 'package:shop/models/cart.dart';
 import 'package:shop/models/product.dart';
 
 class CartProvider with ChangeNotifier {
-  late Map<String, CartItem> _items;
+  late Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get item {
     return {..._items};
+  }
+
+  int get intCount {
+    return _items.length;
   }
 
   void addItens(Product product) {
