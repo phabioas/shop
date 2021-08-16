@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/cart_provider.dart';
+import 'package:shop/utils/app_routes.dart';
 import 'package:shop/widgets/badge.dart';
 import 'package:shop/widgets/product_grid.dart';
 
@@ -18,6 +19,7 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
       appBar: AppBar(
         title: Text('Minha Loja'),
         actions: [
+          
           PopupMenuButton(
             icon: Icon(Icons.menu),
             onSelected: (int selectValue) {
@@ -44,7 +46,9 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
           Consumer<CartProvider>(
             child: IconButton(
               icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed((AppRoute.CART));
+              },
             ),
             builder: (_, cart, child) => Badge(
               value: cart.intCount.toString(),
