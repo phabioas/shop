@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/models/cart.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/providers/cart_provider.dart';
 
 class CartItemWidget extends StatelessWidget {
   final CartItem cartItem;
@@ -12,6 +14,25 @@ class CartItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(cartItem.id),
+      background: Container(
+        color: Theme.of(context).errorColor,
+        child: Icon(
+          Icons.delete,
+          color: Colors.white,
+          size: 40,
+        ),
+        alignment: Alignment.centerRight,
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 4,
+        ),
+      ),
+      direction: DismissDirection.endToStart,
+      onDismissed: (_) {
+        Provider.of<CartProvider>(context, listen: false)
+            .removeItem(cartItem.productId);
+      },
       child: Card(
         margin: EdgeInsets.symmetric(
           horizontal: 15,

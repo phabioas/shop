@@ -20,7 +20,7 @@ class ProductItem extends StatelessWidget {
             ),
             onTap: () {
               Navigator.of(context).pushNamed(
-                AppRoute.PRODUCT_DETAIL,
+                AppRoute.productDetail,
                 arguments: product,
               );
               // Navigator.of(context).push(

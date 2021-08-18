@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/cart_provider.dart';
 import 'package:shop/utils/app_routes.dart';
+import 'package:shop/widgets/app_drawer.dart';
 import 'package:shop/widgets/badge.dart';
 import 'package:shop/widgets/product_grid.dart';
 
@@ -19,7 +20,6 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
       appBar: AppBar(
         title: Text('Minha Loja'),
         actions: [
-          
           PopupMenuButton(
             icon: Icon(Icons.menu),
             onSelected: (int selectValue) {
@@ -29,7 +29,6 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
                 } else {
                   this._showFavoriteOnly = false;
                 }
-                print('ProductOverViewScreen $_showFavoriteOnly');
               });
             },
             itemBuilder: (_) => [
@@ -47,7 +46,7 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
             child: IconButton(
               icon: Icon(Icons.shopping_cart),
               onPressed: () {
-                Navigator.of(context).pushNamed((AppRoute.CART));
+                Navigator.of(context).pushNamed((AppRoute.cart));
               },
             ),
             builder: (_, cart, child) => Badge(
@@ -58,6 +57,7 @@ class _ProductOverViewScreenState extends State<ProductOverViewScreen> {
         ],
       ),
       body: ProductGrid(this._showFavoriteOnly),
+      drawer: AppDrawer(),
     );
   }
 }
