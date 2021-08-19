@@ -27,7 +27,7 @@ class CartProvider with ChangeNotifier {
   void addItens(Product product) {
     if (_items.containsKey(product.id)) {
       _items.update(
-        product.id,
+        product.id!,
         (value) => CartItem(
           id: value.id,
           productId: value.productId,
@@ -38,10 +38,10 @@ class CartProvider with ChangeNotifier {
       );
     } else {
       _items.putIfAbsent(
-        product.id,
+        product.id!,
         () => CartItem(
           id: Random().nextDouble().toString(),
-          productId: product.id,
+          productId: product.id!,
           title: product.title,
           quantity: 1,
           price: product.price,

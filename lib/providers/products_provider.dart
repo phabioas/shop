@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:shop/data/product_dummy.dart';
 import 'package:shop/models/product.dart';
@@ -30,13 +32,31 @@ class ProductProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct(Product product) {
-    _items.add(product);
+  void addProduct(Product newProduct) {
+    newProduct.id = Random().nextDouble().toString();
+    _items.add(newProduct);
     notifyListeners();
   }
 
+  void updateProduct(Product product) {
+    if (product.id == null || product.id!.isEmpty) {
+      return;
+    }
+
+    final index = _items.indexWhere((element) => element.id == product.id);
+
+    if (index >= 0) {
+      _items[index] = product;
+      notifyListeners();
+    }
+  }
+
   void removeProduct(Product product) {
-    _items.remove(product);
-    notifyListeners();
+    final index = _items.indexWhere((element) => element.id == product.id);
+
+    if (index >= 0) {
+      _items.remove(product);
+      notifyListeners();
+    }
   }
 }

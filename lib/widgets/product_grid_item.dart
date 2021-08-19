@@ -4,7 +4,7 @@ import 'package:shop/models/product.dart';
 import 'package:shop/providers/cart_provider.dart';
 import 'package:shop/utils/app_routes.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Product product = Provider.of<Product>(context, listen: false);
@@ -60,7 +60,7 @@ class ProductItem extends StatelessWidget {
                     action: SnackBarAction(
                       label: 'DESFAZER',
                       onPressed: () {
-                        cart.removeSingleItem(product.id);
+                        cart.removeSingleItem(product.id!);
                       },
                     ),
                   ),

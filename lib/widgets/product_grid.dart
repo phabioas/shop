@@ -14,15 +14,12 @@ class ProductGrid extends StatelessWidget {
         ? Provider.of<ProductProvider>(context).favoriteitems
         : Provider.of<ProductProvider>(context).items;
 
-    print('ProductGrid $showFavoriteOnly');
-    print(products.length);
-
     return GridView.builder(
       padding: EdgeInsets.all(10),
       itemCount: products.length,
       itemBuilder: (ctx, i) => ChangeNotifierProvider<Product>.value(
         value: products[i],
-        child: ProductItem(),
+        child: ProductGridItem(),
       ),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
